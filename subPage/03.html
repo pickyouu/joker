@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>joker</title>
+  <link rel="icon" href="../imgs/icon/joker.ico">
+  <link rel="stylesheet" href="../css/bootstarp/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/main/main.css">
+
+  
+  <style>
+    
+    
+    #float_ball{
+      width: 50px;height: 50px;background-color: lightgray;position: fixed;top: 50%;right: 0;line-height: 50px;text-align: center;border-radius: 50%;
+    }
+    
+  </style>
+</head>
+<body>
+  <a href="top"></a>
+  <div id="float_ball"><a href="#top" style="display: block;width: 100%;height: 100%;text-decoration: none;">top</a></div>
+  <div class="container">
+    <div id="header">
+      <div class="panel panel-warning" style="overflow: hidden;">
+        <div class="panel-heading" >
+          <h2>Laughing And Joking笑话大全<span id="logo"><img src="../imgs/logo/logo.png" alt=""></span><h2>
+            
+          </div>   
+      </div>
+      <ol class="breadcrumb" >
+        <li><a href="../index.html">首页</a></li>
+        <li class="active">校园笑话</li>
+        <!-- <li class="active">Data</li> -->
+      </ol>
+    </div>
+
+    <div id="bodyer">
+      <ul id="content">
+      </ul>
+    </div>
+    
+    <div id="footer">
+      <div><span >Copyright ©  2021 -2021 | Email：zzz___222@163.com</span></div>
+    </div>
+</div>
+
+
+<script src="../js/jquery/jquery-1.12.4.min.js"></script>
+<script src="../js/jquery/jquery.cookie.js"></script>
+<script src="../js/bootstarp/bootstrap.min.js"></script>
+<script src="../js/tools/tools.js"></script>
+<script>
+  let hash=location.hash  //获取锚点
+  location.hash="#header"  //设置一个
+  let tableID=$.cookie('tableId')
+  getTitle(tableID)
+  .then((msg)=>{
+    
+     //信息加载完后设置锚点 
+    window.location.hash=hash
+    
+  })
+  .catch((err)=>{
+    console.log('err')
+  })
+
+  $('#content').on('click','li',function(){
+   let id=($(this).attr('index'))
+    $.cookie('id',id)
+   console.log($.cookie('id'))
+    
+  })
+</script>
+</body>
+</html>

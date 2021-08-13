@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>joker</title>
+  <link rel="icon" href="../imgs/icon/joker.ico">
+  <link rel="stylesheet" href="../css/bootstarp/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/main/main.css">
+
+  
+  <style>
+    
+    
+    #float_ball{
+      width: 50px;height: 50px;background-color: lightgray;position: fixed;top: 50%;right: 0;line-height: 50px;text-align: center;border-radius: 50%;z-index: 10;
+    }
+    
+  </style>
+</head>
+<body>
+  <div id="float_ball"><a style="display: block;width: 100%;height: 100%;text-decoration: none;">back</a></div>
+  <div class="container">
+    <div id="header">
+      <div class="panel panel-warning" style="overflow: hidden;">
+        <div class="panel-heading" >
+          <h2>Laughing And Joking笑话大全<span id="logo"><img src="../imgs/logo/logo.png" alt=""></span><h2>
+            
+          </div>   
+      </div>
+      <ol class="breadcrumb" >
+        <li><a href="../index.html">首页</a></li>
+        <li><a></a></li>
+        <li class="active" id="nav-title"></li>
+      </ol>
+      <div class="progress"><!-- 进度条 -->
+        <div class="progress-bar" role="progressbar"  aria-valuemin="0" aria-valuemax="100"><!-- aria-valuenow="60" -->
+          <!-- 60% -->
+        </div>
+      </div>
+    </div>
+
+    <div id="bodyer">
+      <div style="text-align: center;background-image: url(../imgs/back/back.jpg);background-repeat:repeat-y;background-position:center center;opacity: 0.8;">
+        <h2 style="padding-top: 50px;" id="title"></h2>
+        <div style="display: grid;grid-template-columns: 25% auto 25%;text-align: left;">
+          <div></div>
+          <div id="joke">
+            
+          </div>
+          <div></div>
+        </div>
+        <div class="btn-group" role="group" aria-label="..." style="padding-top: 20px;">
+          <button type="button" class="btn btn-default" id="prev">上一篇</button>
+          
+          <button type="button" class="btn btn-default" id="next">下一篇</button>
+        </div>
+      </div>
+      
+    </div>
+    
+    <div id="footer">
+      <div><span >Copyright ©  2021 -2021 | Email：zzz___222@163.com</span></div>
+    </div>
+</div>
+
+
+
+<script src="../js/jquery/jquery-1.12.4.min.js"></script>
+<script src="../js/bootstarp/bootstrap.min.js"></script>
+<script src="../js/tools/tools.js"></script>
+<script src="../js/jquery/jquery.cookie.js"></script>
+<script>
+  let id=parseInt($.cookie('id'))
+  let tableId=$.cookie('tableId')
+  let count=0;
+  // 设置back_ball
+  let back_net=`./0${tableId}.html#${id}`
+  $('#float_ball a').attr('href',`${back_net}`)
+
+  if(id==1){
+    $('#prev').attr('disabled','disabled')
+  }
+  
+  
+  $('#next').on('click',()=>{
+    $('#prev').removeAttr('disabled')
+    if(id>=count){
+      $('#next').attr('disabled','disabled')
+    }else{
+      id=id+1
+      /* 设置back_ball的返回地址 */
+      getJoke('./getjoke.php',id)
+      back_net=`./0${tableId}.html#${id}`
+      $('#float_ball a').attr('href',back_net)
+    }
+  })
+  $('#prev').on('click',()=>{
+    $('#next').removeAttr('disabled')
+    if(id<=1){
+      $('#prev').attr('disabled','disabled')
+    }else{
+
+      id=id-1
+      /* 设置back_ball的返回地址 */
+      getJoke('./getjoke.php',id)
+      back_net=`./0${tableId}.html#${id}`
+      $('#float_ball a').attr('href',back_net)
+    }
+    
+  })
+
+  
+  
+  
+  
+
+  function getJoke(url,id){
+  console.log('getjoke...')
+  $.ajax({
+    type:"get",
+    url:url,
+    data:{
+        //city:"海口"
+        id:id,
+        tableid:tableId
+  },
+  //dataType:"jsonp",
+  success:function(data,textStatus,xhr){
+      /*
+          textStatus:success error
+          xhr ajax对象
+      */
+    
+    data=JSON.parse(data) 
+    count=data.count
+    console.log(count)
+
+    if(data.code==1){
+      console.log(data.message)
+    }else{
+      // 设置进度条
+      if(count!=0){
+      let progress=(id/count)*100
+      
+      $('.progress-bar').attr('style',`width:${progress}%;`).html(id+'/'+count)
+      }
+
+      $('#title').html(data.joke.title)
+      $('#joke').html(data.joke.content)
+      $('#nav-title').html(data.joke.title)
+      
+    }
+    // $('#title').html(data[0])
+    // $('#joke').html(data[1])
+    
+  },
+  error:function(msg){
+      console.log('error:'+msg);
+  }
+  })
+}
+  getJoke('./getjoke.php',id)
+  
+
+  let arr=['家庭笑话','儿童笑话','校园笑话','职场笑话','搞笑句子','爆笑神回复','冷笑话','爱情笑话','英语']
+  let net=`./0${tableId}.html`
+  
+  $('.breadcrumb li').eq(1).find('a').html(arr[tableId-1]).attr('href',net)
+  
+  
+</script>
+</body>
+</html>

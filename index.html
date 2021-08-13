@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>joker</title>
+  <link rel="icon" href="./imgs/icon/joker.ico">
+  <link rel="stylesheet" href="./css/bootstarp/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/main/main.css">
+
+  <script src="./js/jquery/jquery-1.12.4.min.js"></script>
+<script src="./js/bootstarp/bootstrap.min.js"></script>
+<script src="./js/tools/tools.js"></script>
+<script src="./js/jquery/jquery.cookie.js"></script>
+  <style>
+    
+   
+    
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="header"><!-- 头部 -->
+      <div class="panel panel-warning" style="overflow: hidden;">
+        <div class="panel-heading" >
+          <h2>Laughing And Joking笑话大全<span id="logo"><img src="./imgs/logo/logo.png" alt=""></span><h2>
+            
+          </div>  
+      </div>
+    </div>
+    
+
+    <div id="bodyer">
+      
+        <ul id="content">
+          <li class="shadow" index="1"><a href="./subPage/01.html">家庭笑话</a></li><!-- jokefamily -->
+          <li class="shadow" index="2"><a href="./subPage/02.html">儿童笑话</a></li><!-- jokechild -->
+          <li class="shadow" index="3"><a href="./subPage/03.html">校园笑话</a></li><!-- jokeschool -->
+          <li class="shadow" index="4"><a href="./subPage/04.html">职场笑话</a></li><!-- jokecareer -->
+          <li class="shadow" index="5"><a href="./subPage/05.html">搞笑句子</a></li><!-- Funny_sentence -->
+          <li class="shadow" index="6"><a href="./subPage/06.html">爆笑神回复</a></li><!-- Hilarious_reply -->
+          <li class="shadow" index="7"><a href="./subPage/07.html">冷笑话</a></li><!-- cold_joke -->
+          <li class="shadow" index="8"><a href="./subPage/08.html">爱情笑话</a></li>
+          <li class="shadow" index="9"><a href="./subPage/09.html">英语</a></li>
+          
+        
+        </ul>
+      
+    </div>
+
+    <div id="footer">
+      <div><span >Copyright ©  2021 -2021 | Email：zzz___222@163.com</span></div>
+    </div>
+</div>
+</body>
+
+</html>
+<script>
+  for(let i of $('#content li')){
+    $(i).css({
+      backgroundColor:getColor()
+    })
+  }
+
+  $('#content').on('click','li',function(){
+   let id=($(this).attr('index'))
+    $.cookie('tableId',id)
+   
+    
+  })
+</script>
