@@ -8,7 +8,7 @@ $tableList=['jokefamily','jokechild','jokeschool','jokecareer','funny_sentence',
 
 $response=["code"=>0,"message"=>"","count"=>0,'joke'=>$obj]; 
 // $link=mysqli_connect("127.0.0.1","root","123456");
-$link=mysqli_connect("8.129.237.119","joker","123456");
+$link=mysqli_connect("149.28.199.77","root","123456");
 if(!$link){
   $response["code"]=1;
   $response["message"]="数据库连接失败";

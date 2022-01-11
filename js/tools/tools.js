@@ -38,6 +38,7 @@ function getTitle(tableId){
     $.ajax({
       type:'get',
       url:'./getTitle.php',
+      datatType:"jsonp",
       data:{
         tableid:tableId
       },

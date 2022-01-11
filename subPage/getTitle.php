@@ -6,7 +6,7 @@ $id= $_GET["tableid"];
 $tableList=['jokefamily','jokechild','jokeschool','jokecareer','funny_sentence','hilarious_reply','cold_joke','jokelove','jokeeglish'];
 
 // $link=mysqli_connect("127.0.0.1","root","123456");
-$link=mysqli_connect("8.129.237.119:3306","joker","123456");
+$link=mysqli_connect("149.28.199.77","root","123456");
 if(!$link){
  
   echo 0;
@@ -24,11 +24,13 @@ $row2=mysqli_fetch_all($res2);
 
 
 if(!$row2){
-  echo 0;
+  echo "err";
   exit;
 }
 
 echo(json_encode($row2));
 
 mysqli_close($link);
+
+
 ?>
